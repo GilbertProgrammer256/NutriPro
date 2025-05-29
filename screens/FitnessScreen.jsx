@@ -67,7 +67,7 @@ const FitnessScreen = () => {
       <View style={styles.metrics}>
         <Text style={styles.metric}>🔥 Calories Burned: {caloriesBurned.toFixed(1)} kcal</Text>
         <Text style={styles.metric}>⚡ Energy Used: {kilojoules.toFixed(1)} kJ</Text>
-        <Text style={styles.metric}>❤️ Heart Rate: {heartRateIncrease} bpm</Text>
+        <Text style={styles.metric}>❤️ Heart Rate:{heartRateIncrease} bpm</Text>
         <Text style={styles.metric}>🩸 Blood Sugar Drop: {bloodSugarDrop.toFixed(1)} mg/dL</Text>
         <Text style={styles.metric}>💪 Insulin Sensitivity Boost: {insulinBoost.toFixed(0)}%</Text>
         <Text style={styles.metric}>⚖️ Weight Support: {caloriesBurned >= 200 ? 'Yes ✅' : 'Not Yet ❌'}</Text>

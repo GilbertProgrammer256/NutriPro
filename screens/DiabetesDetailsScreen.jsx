@@ -1,7 +1,11 @@
 import React from 'react';
-import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, ScrollView } from "react-native";
+import { useState,useEffect } from "react";
+import axios from "axios";
 
 const DiabetesDetailsScreen = () => {
+
+
   const user = {
     name: 'John Doe',
     age: 45,
@@ -19,6 +23,21 @@ const DiabetesDetailsScreen = () => {
     bmi: '26.8',
   };
 
+const [student,setStudent]= useState()
+useEffect(()=>{
+  async function getAllStudent() {
+    try{
+const students=await axios.get('http://127.0.0.1:8000/backend/student/')
+console.log(students.data)
+setStudent(students.data)
+    }
+    catch (error) {
+console.log(error)
+    }
+  }
+    getAllStudent()
+  
+},[] );
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <Text style={styles.header}>Diabetes Profile</Text>
@@ -78,3 +97,4 @@ const styles = StyleSheet.create({
 });
 
 export default DiabetesDetailsScreen;
+

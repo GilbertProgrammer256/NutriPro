@@ -14,7 +14,7 @@ const HomeScreen = ({ navigation }) => {
       />
       <Text style={styles.title}>NutriPro</Text>
       <Text style={styles.slogan}>Smart Nutrition for Diabetes Wellness</Text>
-<Text style={styles.slogan}>PASHA AND TEAM DEVELOPERZ</Text>
+
       <View style={styles.buttonGroup}>
         <TouchableOpacity
           style={styles.loginButton}
@@ -27,7 +27,7 @@ const HomeScreen = ({ navigation }) => {
           style={styles.getStartedButton}
           onPress={() => navigation.navigate('Signup')}
         >
-          <Text style={styles.buttonTextAlt}>Get Started</Text>
+          <Text style={styles.buttonTextAlt}>Create Account</Text>
         </TouchableOpacity>
       </View>
     </View>

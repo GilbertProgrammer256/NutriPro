@@ -13,7 +13,7 @@ const DashboardScreen = ({ navigation }) => {
         {/* Home Screen Card */}
         <TouchableOpacity 
           style={[styles.card, styles.homeCard]} 
-          onPress={() => navigation.navigate('HomeScreen')}
+          onPress={() => navigation.navigate('Dashboard')}
         >
           <Text style={styles.cardText}>🏡 Home</Text>
         </TouchableOpacity>

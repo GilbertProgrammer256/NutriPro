@@ -16,6 +16,12 @@ import HealthTipsScreen from './screens/HealthTipsScreen';
 import RecipesScreen from './screens/RecipesScreen';
 import DiabetesTypeScreen from './screens/DiabetesTypeScreen';
 import ArticlesScreen from './screens/ArticlesScreen';
+import AddScreen from './screens/AddScreen';
+import TypeScreen from './screens/TypeScreen';
+import QuestionScreen from './screens/QuestionScreen';
+import UnitsScreen from './screens/UnitsScreen';
+import ReligiousScreen from './screens/ReligiousScreen';
+import DeviceScreen from './screens/DeviceScreen';
 const Stack = createNativeStackNavigator();
 
 const App = () => {
@@ -36,7 +42,12 @@ const App = () => {
         <Stack.Screen name="Recipes" component={RecipesScreen} options={{headerShown:false}}/>  
         <Stack.Screen name="Diabetestype" component={DiabetesTypeScreen} options={{headerShown:false}}/>    
         <Stack.Screen name="Articles" component={ArticlesScreen} options={{headerShown:false}}/>
-
+        <Stack.Screen name="Add" component={AddScreen} options={{headerShown:false}}/>
+        <Stack.Screen name="Type" component={TypeScreen} options={{headerShown:false}}/>
+        <Stack.Screen name="Question" component={QuestionScreen} options={{headerShown:false}}/>
+        <Stack.Screen name="Units" component={UnitsScreen} options={{headerShown:false}}/>
+         <Stack.Screen name="Religious" component={ReligiousScreen} options={{headerShown:false}}/>
+         <Stack.Screen name="Device" component={DeviceScreen} options={{headerShown:false}}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
