@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   View,
   Text,
@@ -9,30 +9,49 @@ import {
   KeyboardAvoidingView,
   Platform,
   ScrollView,
+  ActivityIndicator,
 } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
+import { loginThunk } from '../redux/slices/authThunks';
+ // adjust path as necessary
+
 
 const LoginScreen = ({ navigation }) => {
+  const dispatch = useDispatch();
+  const { token, isLoading, error } = useSelector(state => state.auth);
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  const handleLogin = () => {
+    dispatch(loginThunk(email, password));
+  };
+
+  // Redirect if already authenticated
+  useEffect(() => {
+    if (token) {
+      navigation.navigate('Dashboard');
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [token]);
 
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : undefined}
-      style={styles.container}
-    >
+      style={styles.container}>
       <ScrollView contentContainerStyle={styles.scroll}>
-        <Image
-          source={require('../assets/logo.png')}
-          style={styles.logo}
-        />
+        <Image source={require('../assets/logo.png')} style={styles.logo} />
         <Text style={styles.title}>Welcome Back</Text>
-        <Text style={styles.subtitle}>Log in to continue your wellness journey</Text>
+        <Text style={styles.subtitle}>
+          Log in to continue your wellness journey
+        </Text>
 
         <TextInput
           style={styles.input}
           placeholder="Email"
           placeholderTextColor="#777"
           keyboardType="email-address"
+          autoCapitalize="none"
           value={email}
           onChangeText={setEmail}
         />
@@ -46,16 +65,20 @@ const LoginScreen = ({ navigation }) => {
           onChangeText={setPassword}
         />
 
-        <TouchableOpacity style={styles.loginButton} onPress={() => navigation.navigate("Dashboard")}>
-          <Text style={styles.loginText}>Login</Text>
-        </TouchableOpacity>
+        {error && <Text style={styles.errorText}>{error}</Text>}
+        {isLoading ? (
+          <ActivityIndicator size="large" color="#00796b" />
+        ) : (
+          <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
+            <Text style={styles.loginText}>Login</Text>
+          </TouchableOpacity>
+        )}
 
-       
-               <TouchableOpacity style={styles.loginButton} onPress={() => navigation.navigate("Signup")}>
+        <TouchableOpacity
+          style={styles.loginButton}
+          onPress={() => navigation.navigate('SignUp')}>
           <Text style={styles.loginText}>Create Account</Text>
-        </TouchableOpacity>      
-       
-       
+        </TouchableOpacity>
       </ScrollView>
     </KeyboardAvoidingView>
   );
@@ -118,12 +141,8 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '600',
   },
-  signupLink: {
-    fontSize: 14,
-    color: '#555',
-  },
-  signupText: {
-    color: '#00796b',
-    fontWeight: '600',
+  errorText: {
+    color: 'red',
+    marginBottom: 10,
   },
 });
